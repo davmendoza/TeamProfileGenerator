@@ -9,6 +9,47 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const employees = [];
+var employeeId = 0; 
+
+const manQuestions = [
+    {
+        message: "What is you name?",
+        type: 'input',
+        name: 'name'
+    },
+
+    {
+        message: 'What is your Email?',
+        type:'input',
+        name: 'email'
+    },
+
+    {
+        message: 'What is your Office ID?',
+        type:'input',
+        name: 'officeId'
+
+    }
+]
+
+inquirer
+.prompt(manQuestions)
+.then(function(answers) {
+
+
+    employeeId++;
+
+    var manager = new Manager(employeeId, answers.name, answers.email, answers.officeId)
+
+    employees.push(manager)
+
+  
+}) 
+
+
+
+
 
 
 // Write code to use inquirer to gather information about the development team members,
